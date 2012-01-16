@@ -1,0 +1,2 @@
+Pygmentize adds a command \pygmentize to allow including source code with syntax highlighting.
+The source code must be in a separate file. e.g. \pygmentize {source.py}
