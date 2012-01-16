@@ -3,69 +3,81 @@
 %%% requires --enable-pipes and "pygmentize" to be a valid command
 %%% e.g. usage \pygmentize {source.py}
 \ProvidesPackage{pygmentize}
-
-\newcommand{\pygmentize}[2][mathescape=true]{\input "|pygmentize -f tex -O #1 #2"}
-
-%%% Output below is from the 'vs' theme of Pygments
 \usepackage{fancyvrb}
 \usepackage{color}
 \usepackage[latin1]{inputenc}
 
-\makeatletter
-\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
-    \let\PY@ul=\relax \let\PY@tc=\relax%
-    \let\PY@bc=\relax \let\PY@ff=\relax}
-\def\PY@tok#1{\csname PY@tok@#1\endcsname}
-\def\PY@toks#1+{\ifx\relax#1\empty\else%
-    \PY@tok{#1}\expandafter\PY@toks\fi}
-\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
-    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
-\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+\DeclareOption{default} {
+  %%% Output below is from the 'vs' theme of Pygments
+  \makeatletter
+  \def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+      \let\PY@ul=\relax \let\PY@tc=\relax%
+      \let\PY@bc=\relax \let\PY@ff=\relax}
+  \def\PY@tok#1{\csname PY@tok@#1\endcsname}
+  \def\PY@toks#1+{\ifx\relax#1\empty\else%
+      \PY@tok{#1}\expandafter\PY@toks\fi}
+  \def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+      \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+  \def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
 
-\def\PY@tok@gu{\let\PY@bf=\textbf}
-\def\PY@tok@gs{\let\PY@bf=\textbf}
-\def\PY@tok@cm{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\def\PY@tok@gp{\let\PY@bf=\textbf}
-\def\PY@tok@ge{\let\PY@it=\textit}
-\def\PY@tok@cs{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\def\PY@tok@cp{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\def\PY@tok@gh{\let\PY@bf=\textbf}
-\def\PY@tok@s2{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
-\def\PY@tok@s1{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
-\def\PY@tok@nc{\def\PY@tc##1{\textcolor[rgb]{0.17,0.57,0.69}{##1}}}
-\def\PY@tok@si{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
-\def\PY@tok@sh{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
-\def\PY@tok@sc{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
-\def\PY@tok@c1{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\def\PY@tok@kc{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\def\PY@tok@c{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\def\PY@tok@sx{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
-\def\PY@tok@err{\def\PY@bc##1{\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{##1}}}
-\def\PY@tok@kd{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\def\PY@tok@ss{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
-\def\PY@tok@sr{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
-\def\PY@tok@k{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\def\PY@tok@kn{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\def\PY@tok@kr{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\def\PY@tok@s{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
-\def\PY@tok@kp{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\def\PY@tok@kt{\def\PY@tc##1{\textcolor[rgb]{0.17,0.57,0.69}{##1}}}
-\def\PY@tok@ow{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\def\PY@tok@sb{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
-\def\PY@tok@se{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
-\def\PY@tok@sd{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
+  \def\PY@tok@gu{\let\PY@bf=\textbf}
+  \def\PY@tok@gs{\let\PY@bf=\textbf}
+  \def\PY@tok@cm{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+  \def\PY@tok@gp{\let\PY@bf=\textbf}
+  \def\PY@tok@ge{\let\PY@it=\textit}
+  \def\PY@tok@cs{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+  \def\PY@tok@cp{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+  \def\PY@tok@gh{\let\PY@bf=\textbf}
+  \def\PY@tok@s2{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
+  \def\PY@tok@s1{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
+  \def\PY@tok@nc{\def\PY@tc##1{\textcolor[rgb]{0.17,0.57,0.69}{##1}}}
+  \def\PY@tok@si{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
+  \def\PY@tok@sh{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
+  \def\PY@tok@sc{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
+  \def\PY@tok@c1{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+  \def\PY@tok@kc{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+  \def\PY@tok@c{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+  \def\PY@tok@sx{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
+  \def\PY@tok@err{\def\PY@bc##1{\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{##1}}}
+  \def\PY@tok@kd{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+  \def\PY@tok@ss{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
+  \def\PY@tok@sr{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
+  \def\PY@tok@k{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+  \def\PY@tok@kn{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+  \def\PY@tok@kr{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+  \def\PY@tok@s{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
+  \def\PY@tok@kp{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+  \def\PY@tok@kt{\def\PY@tc##1{\textcolor[rgb]{0.17,0.57,0.69}{##1}}}
+  \def\PY@tok@ow{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+  \def\PY@tok@sb{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
+  \def\PY@tok@se{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
+  \def\PY@tok@sd{\def\PY@tc##1{\textcolor[rgb]{0.64,0.08,0.08}{##1}}}
 
-\def\PYZbs{\char`\\}
-\def\PYZus{\char`\_}
-\def\PYZob{\char`\{}
-\def\PYZcb{\char`\}}
-\def\PYZca{\char`\^}
-\def\PYZsh{\char`\#}
-\def\PYZpc{\char`\%}
-\def\PYZdl{\char`\$}
-\def\PYZti{\char`\~}
-% for compatibility with earlier versions
-\def\PYZat{@}
-\def\PYZlb{[}
-\def\PYZrb{]}
-\makeatother
+  \def\PYZbs{\char`\\}
+  \def\PYZus{\char`\_}
+  \def\PYZob{\char`\{}
+  \def\PYZcb{\char`\}}
+  \def\PYZca{\char`\^}
+  \def\PYZsh{\char`\#}
+  \def\PYZpc{\char`\%}
+  \def\PYZdl{\char`\$}
+  \def\PYZti{\char`\~}
+  % for compatibility with earlier versions
+  \def\PYZat{@}
+  \def\PYZlb{[}
+  \def\PYZrb{]}
+  \makeatother
+}
+
+%%% Any other options in the package are passed to command line
+\newcommand \pygopts{}
+\DeclareOption* { \expandafter\edef\expandafter\pygopts\expandafter{\pygopts -P "\CurrentOption" } }
+
+\ProcessOptions\relax
+
+\def \cmdline{|pygmentize -f tex }
+
+\newcommand{\pygmentize}[2][]{
+  \input "\cmdline -P "verboptions=#1" \pygopts #2"
+  \typeout{"\cmdline -P "verboptions=#1" \pygopts #2"}
+}
